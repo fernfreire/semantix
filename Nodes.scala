@@ -13,8 +13,13 @@ class Nodes {
     } else return
   }
 
-  def centralityList = this.listOfNodes.map(n => (n.centrality, n)).toList.sortBy(e => e._1)
-  def printCentralityList = this.centralityList.foreach(e => println(s"${e._2} - centrality: ${(e._1 * 100 floor) / 100}"))
+  def centralityList = this.listOfNodes.map(n => (n.centrality(this), n)).toList.sortBy(e => e._1).reverse
+  def printCentralityList = this.centralityList.foreach(e => println(s"${e._2} - centrality: ${(e._1 * 10000 floor) / 10000}"))
+  def closestToCenterList = {
+    val cl = this.centralityList
+    cl.filter(_._1.equals(cl.head._1))
+  }
+  def printClosestToCenterList = this.closestToCenterList.foreach(e => println(s"${e._2} - centrality: ${(e._1 * 10000 floor) / 10000}"))
   def printLinks = this.listOfNodes.foreach(n => println(s"${n}, linked to ${n.linkedToNodes.mkString(", ")}"))
 
   override def toString = this.listOfNodes.mkString(", ")

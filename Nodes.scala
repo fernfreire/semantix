@@ -13,6 +13,8 @@ class Nodes {
     } else return
   }
 
+  def farnessList = this.listOfNodes.map(n => (n.farness(this), n)).toList.sortBy(e => e._1)
+  def printFarnessList = farnessList.foreach(n => println(s"${n._2} - farness: ${n._1}"))
   def centralityList = this.listOfNodes.map(n => (n.centrality(this), n)).toList.sortBy(e => e._1).reverse
   def printCentralityList = this.centralityList.foreach(e => println(s"${e._2} - centrality: ${(e._1 * 10000 floor) / 10000}"))
   def closestToCenterList = {
@@ -21,6 +23,11 @@ class Nodes {
   }
   def printClosestToCenterList = this.closestToCenterList.foreach(e => println(s"${e._2} - centrality: ${(e._1 * 10000 floor) / 10000}"))
   def printLinks = this.listOfNodes.foreach(n => println(s"${n}, linked to ${n.linkedToNodes.mkString(", ")}"))
+
+  def resetGraph: Unit = {
+    this.listOfNodes.foreach(_.linkedToNodes = List())
+    this.listOfNodes = List()
+  }
 
   override def toString = this.listOfNodes.mkString(", ")
 }

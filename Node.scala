@@ -12,10 +12,6 @@ class Node(i: Int) {
   def BFS(graph: Nodes): List[List[Node]] = {
 
     def BFS0(elems: List[Node], visited: List[List[Node]]): List[List[Node]] = {
-      /*val flatVisited = visited.flatten
-      val elems2 = this.listOfNodes.filter(elems.contains(_))
-      val newNeighbors = elems2.flatMap(_.linkedToNodes).toList
-      val notVisitedNewNeighbors = newNeighbors.filterNot(n => flatVisited.contains(n))*/
       val newNeighbors = graph.listOfNodes.filter(elems.contains(_)).flatMap(_.linkedToNodes).filterNot(visited.flatten.contains(_))
       if (newNeighbors.isEmpty)
         visited

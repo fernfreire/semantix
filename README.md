@@ -1,6 +1,3 @@
 # semantix
-Get all the files from the repository, cd to the root, then from the there, run
-command
-scala -cp build ChallengeApp
-to start the application. Instructions on how to use the it are contained in
-itself.
+Get all the files from the repository, cd to the root, then run sh script
+./run.sh from a machine with scala installed
